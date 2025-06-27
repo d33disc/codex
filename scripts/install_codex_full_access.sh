@@ -107,11 +107,11 @@ echo "To use 'cx' in this terminal, run: source $ZSHRC"
 echo
 
 # Step 6: Verify Installation
-echo "[6/7] Verifying Codex installation and alias..."
+echo "[6/7] Verifying Codex installation..."
 
-alias cx="$CLI_PATH"
+# skip alias here; test the CLI binary directly
 
-if cx --help &>/dev/null; then
+if "$CLI_PATH" --help &>/dev/null; then
   echo "Codex CLI is working!"
 else
   echo "Error: Codex CLI did not respond as expected. Check $LOG_FILE for details."
