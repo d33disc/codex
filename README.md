@@ -494,6 +494,16 @@ In 2021, OpenAI released Codex, an AI system designed to generate code from natu
 Any model available with [Responses API](https://platform.openai.com/docs/api-reference/responses). The default is `o4-mini`, but pass `--model gpt-4.1` or set `model: gpt-4.1` in your config file to override.
 
 </details>
+
+<details>
+<summary><strong>One-step Full-Access Installer</strong></summary>
+
+```bash
+bash scripts/install_codex_full_access.sh
+```
+
+</details>
+
 <details>
 <summary>Why does <code>o3</code> or <code>o4-mini</code> not work for me?</summary>
 
