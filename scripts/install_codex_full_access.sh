@@ -56,6 +56,8 @@ done
 if ! command -v pnpm &>/dev/null; then
   echo "pnpm not found. Installing pnpm globally via npm..."
   npm install -g pnpm || { echo "Failed to install pnpm. Aborting."; exit 1; }
+  echo "Adding npm global binary path to PATH"
+  export PATH="$(npm bin -g):$PATH"
 fi
 
 if ! command -v cargo &>/dev/null; then
@@ -89,6 +91,11 @@ pnpm build   || { echo "pnpm build failed. Check $LOG_FILE for details."; exit 1
 echo "Running native dependency install..."
 bash scripts/install_native_deps.sh || { echo "Native dependency install failed. Aborting."; exit 1; }
 echo "Build and installation complete."
+# Create a 'codex' shim pointing to the real entrypoint, for CLI invocations without .js
+cd "$HOME/codex/codex-cli/bin"
+if [ -f codex.js ] && [ ! -e codex ]; then
+  ln -s codex.js codex || echo "Warning: failed to create 'codex' symlink"
+fi
 echo
 
 # Step 5: Add Alias to Shell Configuration
